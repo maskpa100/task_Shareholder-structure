@@ -1,0 +1,35 @@
+.table {
+    background: #fff;
+    border-radius: 12px;
+
+    .ant-table-tbody>tr>td {
+        background-color: #1111120A;
+        font-weight: 600;
+    }
+
+    .ant-table-tbody>tr>td.shares-column {
+        font-weight: 400;
+    }
+
+    .ant-table {
+        font-size: 14px;
+
+        .ant-table-thead>tr>th {
+            background-color: #172339;
+            font-weight: bold;
+            color: #fff;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+
+
+
+        .ant-table-tbody>tr:hover>td {
+            background-color: #17233914;
+            cursor: pointer;
+            color: #172339;
+            font-weight: 600;
+        }
+    }
+}
