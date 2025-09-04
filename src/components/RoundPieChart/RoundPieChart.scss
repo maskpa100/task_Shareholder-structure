@@ -1,24 +1,110 @@
-.triangle {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 14px solid #000;
-    left: 50%;      
-    transform: translateX(-50%);
-    bottom:-14px;
+.pie-with-legend {
+    display: flex;
+    align-items: flex-start;
+    width: 48%;
+    border: 1px solid #bdbcbc;
+    border-radius: 16px;
+    justify-content: space-evenly;
+
+    .legend {
+        margin: 32px 43px 0 14px;
+        display: flex;
+        flex-direction: column;
+
+        .legend-item {
+            margin-bottom: 8px;
+
+            .legend-item-row {
+                display: flex;
+                flex-direction: row;
+                color: #454f61;
+                margin-right: 10px;
+
+                .legend-color {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    margin-right: 8px;
+                    margin-left: 13px;
+                }
+
+                .legend-text {
+                    margin: -4px 0 0 11px;
+                    display: block;
+                    white-space: nowrap;
+                }
+            }
+
+            .br {
+                width: 100%;
+                height: 1px;
+                border: 1px solid #bdbcbc;
+                margin: 14px 0;
+            }
+        }
+    }
 }
 
-.triangle::after {
-    content: "";
+.custom-tooltip {
     position: absolute;
-    left: -8px;
-    top: -18px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 16px solid #fff;
-    z-index: -1;
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: #000;
+    border: 1px solid #9f9f9f;
+    pointer-events: none;
+
+    .tooltip-name {
+        margin: 0;
+        white-space: nowrap;
+        color: #172339;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .tooltip-value {
+        margin: 0;
+        font-weight: bold;
+        font-weight: 400;
+        margin-top: 8px;
+    }
+
+    .triangle {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 14px solid #9f9f9f;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -14px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: -18px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 16px solid #fff;
+            z-index: -1;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .pie-with-legend {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .pie-with-legend {
+        align-items: center;
+        flex-direction: column;
+
+    }
 }

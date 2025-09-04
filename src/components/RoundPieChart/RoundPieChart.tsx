@@ -1,24 +1,21 @@
-import './RoundPieChart.scss';
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import "./RoundPieChart.scss";
+import { useState } from "react";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import type { Data } from "../../App";
+
+
+const COLORS = ["#0088FE", "#00C49F", "#3f2cbaff", "#8ca42aff", "#ff7300", "#8884d8"];
 
 const CustomTooltip = ({ active, payload, coordinate }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
-    // coordinate содержит { x, y } курсора
     return (
-      <div style={{
-        position: 'absolute',
-        left: coordinate.x - 50, // смещение по горизонтали
-        top: coordinate.y - 60,   // смещение вверх
-        backgroundColor: '#fff',
-        padding: '10px 15px',
-        borderRadius: '10px',
-        color: '#000',
-        border: '1px solid #000',
-        pointerEvents: 'none', // чтобы тултип не блокировал курсор
-      }}>
-        <p style={{ margin: 0 }}>{data.name}</p>
-        <p style={{ margin: 0, fontWeight: 'bold' }}>{data.value}</p>
+      <div
+        className="custom-tooltip"
+        style={{ left: coordinate.x - 50, top: coordinate.y - 60 }}
+      >
+        <p className="tooltip-name">{data.name}</p>
+        <p className="tooltip-value">{data.value.toFixed(2)}%</p>
         <div className="triangle"></div>
       </div>
     );
@@ -26,23 +23,63 @@ const CustomTooltip = ({ active, payload, coordinate }: any) => {
   return null;
 };
 
-export const PieWithCustomTooltip = () => (
-  <PieChart width={400} height={400}>
-<Pie
-  data={[
-    { name: 'A', value: 400 },
-    { name: 'B', value: 300 },
-  ]}
-  dataKey="value"
-  cx="50%"
-  cy="50%"
-  outerRadius={100}   // внешний радиус
-  innerRadius={60}    // внутренний радиус — делает центр пустым
-  fill="#8884d8"
->
-      <Cell fill="#0088FE" />
-      <Cell fill="#00C49F" />
-    </Pie>
-    <Tooltip content={<CustomTooltip />} />
-  </PieChart>
-);
+export const PieWithLegend: React.FC<{ data: Data[] }> = ({ data }) => {
+  const [hover, setHover] = useState(false);
+
+  const chartData = data.map((d, index) => ({
+    name: d.holder,
+    value: d.share_percent,
+    color: COLORS[index % COLORS.length],
+  }));
+
+  const adjustedData = chartData.map((d) => ({
+    ...d,
+    value: d.value + 0.0001, // чтобы убрать зазор
+  }));
+
+  return (
+    <div className="pie-with-legend">
+      <PieChart width={350} height={350}>
+        <Pie
+          data={adjustedData}
+          dataKey="value"
+          cx="50%"
+          cy="50%"
+          outerRadius={120}
+          innerRadius={75}
+          paddingAngle={0}
+          cornerRadius={0}
+          stroke="none"
+          startAngle={90}
+          endAngle={450}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          {adjustedData.map((entry) => (
+            <Cell
+              key={entry.name}
+              fill={entry.color}
+              opacity={hover ? 0.3 : 1}
+            />
+          ))}
+        </Pie>
+        <Tooltip content={<CustomTooltip />} />
+      </PieChart>
+
+      <div className="legend">
+        {chartData.map((entry) => (
+          <div key={entry.name} className="legend-item">
+            <div className="legend-item-row">
+              <div
+                className="legend-color"
+                style={{ backgroundColor: entry.color }}
+              ></div>
+              <span className="legend-text">{entry.name}</span>
+            </div>
+            <div className="br"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};

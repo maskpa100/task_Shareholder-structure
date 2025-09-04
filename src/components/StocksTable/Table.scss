@@ -1,6 +1,7 @@
 .table {
     background: #fff;
     border-radius: 12px;
+    width: 52%;
 
     .ant-table-tbody>tr>td {
         background-color: #1111120A;
@@ -31,5 +32,10 @@
             color: #172339;
             font-weight: 600;
         }
+    }
+}
+@media (max-width: 1300px) {
+    .table{
+        width: 100%;
     }
 }
