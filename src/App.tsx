@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import './App.css'
 import dataJson from "./../public/api/data.json";
 import { StocksTable } from "./components/StocksTable/Table";
 import { PieWithLegend } from "./components/RoundPieChart/RoundPieChart";
