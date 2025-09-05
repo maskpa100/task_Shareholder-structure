@@ -4,6 +4,11 @@ import type { ColumnsType } from "antd/es/table";
 import "./Table.scss";
 import type { Data } from "../../App";
 
+const lastUpdate = new Date().toLocaleDateString("ru-RU", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+});
 
 const columns: ColumnsType<Data> = [
   {
@@ -25,7 +30,7 @@ export const StocksTable: React.FC<{ data: Data[] }> = ({ data }) => {
   return (
     <div className="table">
       <Table<Data> columns={columns} dataSource={data} pagination={false} rowKey="holder" />
-        <p className="time">Дата последнего обновления этой структуры: 15.08.2024</p>
+        <p className="time">Дата последнего обновления этой структуры: {lastUpdate}</p>
     </div>
   );
 };

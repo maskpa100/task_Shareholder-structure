@@ -12,13 +12,15 @@
   gap: 30px;
   align-items: flex-start;
 }
+
 @media (max-width: 1300px) {
-  .app{
+  .app {
     flex-direction: column;
   }
 }
+
 @media (max-width: 768px) {
   #root {
-
-  padding: 2rem;
-  }}
+    padding: 1rem;
+  }
+}
