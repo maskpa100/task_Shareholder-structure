@@ -1,69 +1,58 @@
-# React + TypeScript + Vite
+# Shareholder Structure App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Визуализация структуры акционеров компании: таблица держателей и круговая диаграмма распределения долей.
+Проект написан на React + TypeScript, использует Ant Design для таблицы и Recharts для диаграммы.
 
-Currently, two official plugins are available:
+##  📸 Скриншот интерфейса
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![alt text](https://task-shareholder-structure.vercel.app/056.png)
 
-## Expanding the ESLint configuration
+## ✨ Функционал
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Загрузка данных из data.json (имитация запроса к API через axios adapter).
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Объединение дубликатов акционеров и нормализация значений до 100%.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Таблица с данными:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Имя держателя акций.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Процент доли с округлением до двух знаков.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Дата последнего обновления (автоматически выставляется текущая).
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Круговая диаграмма:
+
+- Цветовая легенда для каждого держателя.
+
+- Кастомный tooltip с подсказкой.
+
+ - Подсветка сегментов при наведении.
+
+## 🛠️ Технологии
+
+React
+
+TypeScript
+
+Ant Design
+ — таблица.
+
+Recharts
+ — круговая диаграмма.
+
+Axios
+ — подмена API-запроса.
+
+# 🚀 Установка и запуск
+##  Клонировать проект
+git clone https://github.com/your-repo/shareholder-structure.git
+
+## Перейти в папку проекта
+cd shareholder-structure
+
+## Установить зависимости
+npm install
+
+## Запустить локально
+npm run dev
