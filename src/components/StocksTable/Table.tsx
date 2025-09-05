@@ -25,6 +25,7 @@ export const StocksTable: React.FC<{ data: Data[] }> = ({ data }) => {
   return (
     <div className="table">
       <Table<Data> columns={columns} dataSource={data} pagination={false} rowKey="holder" />
+        <p className="time">Дата последнего обновления этой структуры: 15.08.2024</p>
     </div>
   );
 };

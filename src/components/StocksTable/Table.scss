@@ -3,6 +3,13 @@
     border-radius: 12px;
     width: 52%;
 
+    .time {
+        text-align: left;
+        margin: 15px 0 0 20px;
+        font-size: 14px;
+        color: #454F61;
+    }
+
     .ant-table-tbody>tr>td {
         background-color: #1111120A;
         font-weight: 600;
@@ -34,8 +41,9 @@
         }
     }
 }
+
 @media (max-width: 1300px) {
-    .table{
+    .table {
         width: 100%;
     }
 }
